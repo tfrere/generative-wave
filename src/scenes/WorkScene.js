@@ -1,22 +1,11 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import * as THREE from 'three'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { SpotLight, Shake, Text, Stars, Segments, Segment, Html, Stats, Float, Edges, Environment, OrbitControls } from '@react-three/drei'
-import { EffectComposer, Bloom } from '@react-three/postprocessing'
-import { useSpring, animated, easings } from '@react-spring/three'
+import { useThree } from '@react-three/fiber'
+import { SpotLight, OrbitControls } from '@react-three/drei'
 
-import Fireflies from '../components/Fireflies'
-import Glyph from '../components/Glyph'
-import ObviousLogo from '../components/ObviousLogo'
-import Sparks from '../components/Sparks'
 import City from '../components/City'
-import MovingLines from '../components/MovingLines'
-import { ContinuousCircle, DashedCircle } from '../components/Lines'
-import TextScramble from '../components/TextScramble'
-import Altar from '../components/Altar'
-import Graph from '../components/Graph'
+import { DashedCircle } from '../components/Lines'
 import TexturedPlane from '../components/TexturedPlane'
-import useInterval from '../utils/useInterval'
 import bottomUrl from '../public/bottom.png'
 
 const WorkScene = (props) => {
@@ -47,11 +36,11 @@ const WorkScene = (props) => {
             debug={true}
           />
           <TexturedPlane imageUrl={bottomUrl} opacity={0.3} scale={[6, 6, 6]} rotation={[Math.PI / 2, 0, 0]} position={[0, -1, 0]} />
+        <DashedCircle items={64} rotation={[0, Math.PI / 8, 0]} dashLength={10} speed={1} color={'red'} position={[0, -1, 0]} radius={2.35} />
         </>
       ) : null}
       <>
-        <DashedCircle items={64} rotation={[0, Math.PI / 8, 0]} dashLength={10} speed={1} color={'red'} position={[0, -1, 0]} radius={2.35} />
-        <City number={5} gap={0.5} maxSize={1} position={[-1, -1, -1]} />
+        <City number={50} gap={0.5} maxSize={1} position={[-1, -1, -1]} />
       </>
     </>
   )

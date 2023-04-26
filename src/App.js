@@ -1,10 +1,8 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
-import * as THREE from 'three'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Loader, Stats, Float, Edges, Environment, OrbitControls } from '@react-three/drei'
-import { Glitch, EffectComposer, Bloom, Noise } from '@react-three/postprocessing'
+import { Suspense, useRef } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { Loader, Stats } from '@react-three/drei'
+import { Glitch, EffectComposer, Bloom } from '@react-three/postprocessing'
 
-import MainScene from './scenes/MainScene'
 import WorkScene from './scenes/WorkScene'
 import joinUsOnDiscordImage from './public/join-us-on-discord.png'
 
@@ -27,6 +25,7 @@ export const App = () => {
           <>
             <color attach="background" args={['#0d151d']} />
             <WorkScene debugMode={debugMode} canvasPortalRef={canvasPortalRef} htmlPortalRef={htmlPortalRef} />
+            
             {debugMode ? (
               <>
                 <gridHelper args={[10, 20, '#4D089A', '#4D089A']} position={[0, -1, 0]} />
