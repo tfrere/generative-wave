@@ -1,7 +1,7 @@
 import { Suspense, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Loader, Stats } from '@react-three/drei'
-import { Glitch, EffectComposer, Bloom } from '@react-three/postprocessing'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
 
 import WorkScene from './scenes/WorkScene'
 import joinUsOnDiscordImage from './public/join-us-on-discord.png'
@@ -38,7 +38,7 @@ export const App = () => {
 
             <EffectComposer>
               <Bloom luminanceThreshold={0.1} intensity={0.1} levels={5} mipmapBlur />
-              <Glitch delay={[4.1, 8.1]} duration={[0.2, 0.5]} strength={[0.1, 0.4]} perturbationMap={null} />
+              {/* <Glitch delay={[4.1, 8.1]} duration={[0.2, 0.5]} strength={[0.1, 0.4]} perturbationMap={null} /> */}
               {/*<Noise />*/}
             </EffectComposer>
           </>

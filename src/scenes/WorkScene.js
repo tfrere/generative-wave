@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { useThree } from '@react-three/fiber'
 import { SpotLight, OrbitControls } from '@react-three/drei'
 
-import City from '../components/City'
+import Instanciation from '../components/Instanciation'
 import { DashedCircle } from '../components/Lines'
 import TexturedPlane from '../components/TexturedPlane'
 import bottomUrl from '../public/bottom.png'
@@ -25,7 +25,13 @@ const WorkScene = (props) => {
             <boxGeometry args={[1, 1, 1]} />
             <meshBasicMaterial color="grey" />
           </mesh>
-          <SpotLight
+
+          <TexturedPlane imageUrl={bottomUrl} opacity={0.3} scale={[6, 6, 6]} rotation={[Math.PI / 2, 0, 0]} position={[0, -1, 0]} />
+        <DashedCircle items={64} rotation={[0, Math.PI / 8, 0]} dashLength={10} speed={1} color={'red'} position={[0, -1, 0]} radius={2.35} />
+        </>
+      ) : null}
+      <>
+      <SpotLight
             castShadow
             distance={20}
             intensity={0.1}
@@ -35,12 +41,7 @@ const WorkScene = (props) => {
             volumetric={true}
             debug={true}
           />
-          <TexturedPlane imageUrl={bottomUrl} opacity={0.3} scale={[6, 6, 6]} rotation={[Math.PI / 2, 0, 0]} position={[0, -1, 0]} />
-        <DashedCircle items={64} rotation={[0, Math.PI / 8, 0]} dashLength={10} speed={1} color={'red'} position={[0, -1, 0]} radius={2.35} />
-        </>
-      ) : null}
-      <>
-        <City number={50} gap={0.5} maxSize={1} position={[-1, -1, -1]} />
+        <Instanciation number={10} position={[-1, -1, -1]} />
       </>
     </>
   )

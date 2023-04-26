@@ -1,11 +1,6 @@
-import React, { useEffect, useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
-import * as THREE from 'three'
-import { Line, Edges, Segments, Segment, Plane, MeshDistortMaterial } from '@react-three/drei'
-import { MeshBasicMaterial } from 'three'
-import { useSprings, animated, config } from '@react-spring/three'
+import React from 'react'
+import { useSprings, animated } from '@react-spring/three'
 
-import randomRange from '../utils/randomRange'
 import mapRange from '../utils/mapRange'
 
 import { createNoise3D } from 'simplex-noise'
@@ -14,6 +9,8 @@ import useInterval from '../utils/useInterval'
 let time = 0
 
 export default function City(props) {
+
+  const colors = ["#0B2447", "#19376D", "#576CBC", '#A5D7E8', "#FC5185"]
   const array = Array.from(Array(props.number).keys())
   const noise3D = createNoise3D()
 
@@ -28,6 +25,10 @@ export default function City(props) {
     return {
       scale: [1, value, 1]
     }
+  }
+
+  const randomBetweenIntergers = (min,max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   const [springs, set] = useSprings(
@@ -55,10 +56,11 @@ export default function City(props) {
             <animated.group key={index} {...springs[index]}>
               <animated.mesh scale={[props.gap, props.maxSize, props.gap]} position={[y * props.gap, props.maxSize / 2, x * props.gap]}>
                 <boxGeometry args={[0.4, 1, 0.4]} />
-                <meshBasicMaterial transparent opacity={0} />
+                <meshBasicMaterial color={colors[randomBetweenIntergers(0, colors.length)]} />
+                {/* <meshBasicMaterial transparent opacity={0} />
                 <Edges>
                   <lineBasicMaterial color={'red'} toneMapped={false} />
-                </Edges>
+                </Edges> */}
               </animated.mesh>
             </animated.group>
           )
